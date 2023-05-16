@@ -1,11 +1,12 @@
 import "@/styles/globals.css";
 
-export default function App() {
+const Landing = () => {
   return (
-    <>
+        <>
       <title></title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <link rel="icon" href="/favicon.ico" />
     </>
   );
-}
+};
+export default Landing;
