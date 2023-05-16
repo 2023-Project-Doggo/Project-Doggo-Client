@@ -1,4 +1,4 @@
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function LandingLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <head />

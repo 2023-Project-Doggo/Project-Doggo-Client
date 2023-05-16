@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -14,6 +14,9 @@
     "prettier"
   ],
   "settings": {
+    "import/resolver": {
+        "typescript": {}
+        },
     "react": {
       "version": "detect"
     }
@@ -22,11 +25,12 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["react", "react-hooks", "prettier", "jest"],
   "rules": {
+    "prettier/prettier": "error",
     "react/react-in-jsx-scope": 0,
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": 0,
