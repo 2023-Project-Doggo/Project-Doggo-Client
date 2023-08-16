@@ -16,6 +16,11 @@ body {
   max-width: 100vw; 
 }
 
+canvas{
+  min-width: 100dvw;
+  min-height: 100dvh;
+}
+
 img,
 picture,
 video,
