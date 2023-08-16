@@ -13,9 +13,11 @@ export const HeadConfigurator = () => {
   return (
     <div className="py-4">
         <input
+        className="border border-[#EFF6FF] bg-[#F4F9FF] p-2"
           aria-label="hair" 
           value={hairColor}
-          onChange={setHairColor}
+          onChange={setHairColor}  
+          placeholder={hairColor}
         />
         <input
             aria-label="mouth" 

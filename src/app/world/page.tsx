@@ -8,11 +8,11 @@ import Make from "@/app/world/components/Make";
 const World = () => {
   return (
     <>
+        <Interface/>
         <Canvas camera={{ position: [1, 1.5, 2.5], fov: 50 }} shadows gl={{ preserveDrawingBuffer: true }} >
             <Make/>
         </Canvas>
         <Header/>
-        <Interface/>
     </>
   );
 };

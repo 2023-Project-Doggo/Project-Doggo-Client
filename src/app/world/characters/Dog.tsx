@@ -25,8 +25,8 @@ export default function Model(props : JSX.IntrinsicElements["group"]) {
     return (
     <group {...props} dispose={null}>
         <mesh geometry={nodes.character_dog.geometry} material={nodes.character_dog.material} rotation={[Math.PI / 2, 0, 0,]} >
-        <mesh geometry={nodes.character_dogArmLeft.geometry} material={nodes.character_dogArmLeft.material} position={[0.2, 0, -0.63,]} />
-        <mesh geometry={nodes.character_dogArmRight.geometry} material={nodes.character_dogArmRight.material} position={[-0.2, 0, -0.63,]} />
+          <mesh geometry={nodes.character_dogArmLeft.geometry} material={nodes.character_dogArmLeft.material} position={[0.2, 0, -0.63,]} />
+          <mesh geometry={nodes.character_dogArmRight.geometry} material={nodes.character_dogArmRight.material} position={[-0.2, 0, -0.63,]} />
             <group position={[0, 0, -0.7,]} >
             <mesh geometry={nodes.Cube1339.geometry} material={nodes.Cube1339.material} />
             <mesh geometry={nodes.Cube1339_1.geometry} material={materials['Red.034']} />

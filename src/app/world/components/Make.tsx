@@ -4,7 +4,7 @@ import { CameraControls } from "./CameraControls";
 import Dog from "@/app/world/characters/Dog";
 import { DoubleSide, PlaneGeometry, Sphere } from "three";
 
-const Experience = () => {  
+const Make = () => {  
   return (
     <>
         <CameraControls />
@@ -32,4 +32,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Make;
