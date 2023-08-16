@@ -1,6 +1,12 @@
+import Header from "@/components/Header/Header";
+import Landing from "@/components/Landing/Landing";
+
 const Home = () => {
   return (
-    <>여기는 홈영역으로 할ㅏㅗ</>
+    <>
+      <Header/>
+      <Landing/>   
+    </>
   );
 };
 export default Home;
