@@ -4,8 +4,8 @@ import { createContext, useContext, useMemo, useState } from "react";
 interface CustomizingContextValue {
   cameraMode : string;
   setCameraMode : (cameraMode: string) => void;
-  hairColor : string;
-  setHairColor : (hairColor: string) => void;
+  headColor : string;
+  setHeadColor : (hairColor: string) => void;
   mouthColor : string;
   setMouthColor : (mouthColor: string) => void;
   eyesColor : string;
@@ -29,8 +29,7 @@ const CharacterCustomizationContext = createContext({});
 export const CameraModes = {
   FREE: "FREE",
   HEAD: "HEAD",
-  TOP: "TOP",
-  BOTTOM: "BOTTOM",
+  BODY: "BODY", 
 };
 
 export const SwatchesColors = [
@@ -52,7 +51,7 @@ export const SwatchesColors = [
 
 const CharacterCustomizationProvider = ({ children }: { children: React.ReactNode }) => { 
   const [cameraMode, setCameraMode] = useState(CameraModes.FREE);
-  const [hairColor, setHairColor] = useState();
+  const [headColor, setHeadColor] = useState();
   const [eyesColor, setEyesColor] = useState();
   const [mouthColor, setMouthColor] = useState(); 
   const [skinColor, setSkinColor] = useState();
@@ -65,8 +64,8 @@ const CharacterCustomizationProvider = ({ children }: { children: React.ReactNod
  const contextValue = useMemo(() => ({         
   cameraMode,
   setCameraMode,
-  hairColor,
-  setHairColor,
+  headColor,
+  setHeadColor,
   mouthColor,
   setMouthColor,
   eyesColor,
@@ -86,8 +85,8 @@ const CharacterCustomizationProvider = ({ children }: { children: React.ReactNod
   [ 
     cameraMode,
     setCameraMode,
-    hairColor,
-    setHairColor,
+    headColor,
+    setHeadColor,
     mouthColor,
     setMouthColor,
     eyesColor,

@@ -1,9 +1,10 @@
+import { Stack, ColorInput } from "@mantine/core";
 import { SwatchesColors, useCharacterContext } from "@/app/world/contexts/CharacterCustomizationContext"; 
 
 export const HeadConfigurator = () => {
   const {
-    hairColor,
-    setHairColor,
+    headColor,
+    setHeadColor,
     mouthColor,
     setMouthColor,
     eyesColor,
@@ -11,24 +12,25 @@ export const HeadConfigurator = () => {
   } = useCharacterContext() as any;
 
   return (
-    <div className="py-4">
-        <input
-        className="border border-[#EFF6FF] bg-[#F4F9FF] p-2"
-          aria-label="hair" 
-          value={hairColor}
-          onChange={setHairColor}  
-          placeholder={hairColor}
-        />
-        <input
-            aria-label="mouth" 
-            value={mouthColor}
-            onChange={setMouthColor}
-        />
-        <input
-            aria-label="eyes" 
-            value={eyesColor}
-            onChange={setEyesColor}
-        />
-    </div>
+    <Stack className="py-4">
+        <ColorInput 
+          label={"Head"} 
+          format={"hex"} 
+          swatches={SwatchesColors} 
+          value={headColor} 
+          onChange={setHeadColor}/>
+        <ColorInput 
+          label={"Mouth"} 
+          format={"hex"} 
+          swatches={SwatchesColors} 
+          value={mouthColor} 
+          onChange={setMouthColor}/>
+        <ColorInput 
+          label={"Eyes"} 
+          format={"hex"} 
+          swatches={SwatchesColors} 
+          value={eyesColor} 
+          onChange={setEyesColor}/> 
+    </Stack>
   );
 };
