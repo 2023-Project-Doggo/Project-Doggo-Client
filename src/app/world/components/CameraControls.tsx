@@ -14,12 +14,8 @@ const cameraPositions = {
   [CameraModes.HEAD]: {
     position: new THREE.Vector3(0, 0.2, 2),
     target: new THREE.Vector3(0, 0.2, 0),
-  },
-  [CameraModes.TOP]: {
-    position: new THREE.Vector3(-0.5, 0.1, 1.5),
-    target: new THREE.Vector3(0, 0.2, 0),
-  },
-  [CameraModes.BOTTOM]: {
+  }, 
+  [CameraModes.BODY]: {
     position: new THREE.Vector3(0.5, -0.5, 1.5),
     target: new THREE.Vector3(0, -0.5, 0),
   },
