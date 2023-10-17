@@ -1,4 +1,6 @@
+import { MantineProvider } from "@mantine/core";
 import QueryProvider from "@/providers/QueryProvider";
+import '@mantine/core/styles.css'
 import "@/styles/globals.css";
 import Head from "next/head";
 
@@ -9,9 +11,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </Head>  
       <body> 
-        <QueryProvider> 
-           {children}
-        </QueryProvider>
+        <MantineProvider>
+          <QueryProvider> 
+            {children}
+          </QueryProvider>
+        </MantineProvider>
       </body>
     </html>
   );
