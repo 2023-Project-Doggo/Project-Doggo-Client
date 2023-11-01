@@ -1,5 +1,6 @@
 'use client'
 import useIntersectObserver from "@/hooks/useIntersectObserver";
+import Link from "next/link";
 
 const Header = () => {
 const [ref, entry] = useIntersectObserver<HTMLDivElement>();
@@ -13,9 +14,9 @@ const [ref, entry] = useIntersectObserver<HTMLDivElement>();
         <p>Company</p>
         <p>FAQ's</p>
       </div>
-      <button className="px-10 py-2 rounded-full bg-white text-base text-[#1053F3]">
-        Starts Free
-      </button>
+      <Link className="px-10 py-2 rounded-full bg-white text-base text-[#1053F3]" href='/world'>
+        Start Free
+      </Link>
     </div>
   );
 };
