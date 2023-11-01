@@ -1,13 +1,22 @@
-export default function Layout({
-  children, // will be a page or nested layout
-}: {
-  children: React.ReactNode;
-}) {
+import { MantineProvider } from "@mantine/core";
+import QueryProvider from "@/providers/QueryProvider";
+import '@mantine/core/styles.css'
+import "@/styles/globals.css";
+import Head from "next/head";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <nav className="w-full h-16 bg-gray-500">여기는 네비 영역으로 하려고</nav>
-      {children}
-    </section>
+    <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>  
+      <body> 
+        <MantineProvider>
+          <QueryProvider> 
+            {children}
+          </QueryProvider>
+        </MantineProvider>
+      </body>
+    </html>
   );
 }
