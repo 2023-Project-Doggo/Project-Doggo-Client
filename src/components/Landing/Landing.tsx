@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 const Landing = () => {
   const router = useRouter();
   return (
-    <section className="grid grid-flow-row place-content-center">
+    //px-auto py-5 grid gap-4 grid-flow-col place-items-center text-white bg-[#1053F3]
+    <section className="px-auto grid grid-flow-row place-content-center">
       <div className="px-auto bg-[#1053F3] grid grid-flow-row gap-1">
         <div className="justify-self-center xs:w-full xs:h-10 sm:w-96 sm:h-28 lg:w-[762px] lg:h-[227px] relative"> 
           <Image alt={'landing-image'} fill={true} src={'/img/landing-animals.png'}/>
@@ -14,7 +15,7 @@ const Landing = () => {
           <p className="text-center sm:text-[2rem] lg:text-4xl text-white leading-tight">Meet the best companion of your life!</p>
           <p className="mb-20 text-center sm:text-md lg:text-xl text-white font-normal">we expect you to have adorable experience with our 3D based web.</p>
       </div>
-      <div className="md:px-60 lg:px-96">
+      <div className="px-auto lg:px-96">
         <p className="mt-20 text-xl text-[#1053F3]">- About DOGGO</p> 
         <ImgButton type="Dog"/>
         <div className="mt-10 border border-[#EFF6FF] rounded-3xl shadow-lg p-10 grid grid-auto-row gap-2">
