@@ -27,7 +27,6 @@ export default function Model(props : JSX.IntrinsicElements["group"]) {
       headColor,
       mouthColor,
       eyesColor, 
-      skinColor,
       bodyColor,
       legsColor,
       toeColor,
