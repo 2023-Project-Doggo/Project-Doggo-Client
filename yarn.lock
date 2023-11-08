@@ -204,6 +204,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dimforge/rapier3d-compat@npm:0.11.2":
+  version: 0.11.2
+  resolution: "@dimforge/rapier3d-compat@npm:0.11.2"
+  checksum: f0fbf99feaef4ea3b5cb3d81892c1caf14bd35c89c90ce31462f3707f068f5677d5a2c845efdefa2951a90b276a6ba63a9453f139badda66c4b322b661bf6b81
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.2.0":
   version: 4.4.0
   resolution: "@eslint-community/eslint-utils@npm:4.4.0"
@@ -703,6 +710,21 @@ __metadata:
     react-native:
       optional: true
   checksum: b7ad58c20f1c2193b57425f8cbe6614797b62668744ab164922250a954a18720fa1d3c0bca4152a4577651e49b07b72fdcd28c05c310773e72ac62d6674764b9
+  languageName: node
+  linkType: hard
+
+"@react-three/rapier@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@react-three/rapier@npm:1.1.2"
+  dependencies:
+    "@dimforge/rapier3d-compat": 0.11.2
+    three-stdlib: 2.23.9
+    use-asset: 1.0.4
+  peerDependencies:
+    "@react-three/fiber": ">=8.9.0"
+    react: ">=18.0.0"
+    three: ">=0.139.0"
+  checksum: fa3042e3c8859fa99c718d945488f8983c23f1e7e0b76e0b7b4edcc7941cc8ab4eb7233e59eeb6244ac33461b3614d4d7f996eb40b45284a5ff17a15fede6d0b
   languageName: node
   linkType: hard
 
@@ -1762,6 +1784,7 @@ __metadata:
     "@mantine/modals": ^7.1.3
     "@react-three/drei": ^9.80.3
     "@react-three/fiber": ^8.13.6
+    "@react-three/rapier": ^1.1.2
     "@tanstack/react-query": ^4.32.6
     "@tanstack/react-query-devtools": ^4.32.6
     "@types/node": 18.16.3
@@ -5021,6 +5044,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"three-stdlib@npm:2.23.9":
+  version: 2.23.9
+  resolution: "three-stdlib@npm:2.23.9"
+  dependencies:
+    "@types/draco3d": ^1.4.0
+    "@types/offscreencanvas": ^2019.6.4
+    "@types/webxr": ^0.5.2
+    chevrotain: ^10.1.2
+    draco3d: ^1.4.1
+    fflate: ^0.6.9
+    ktx-parse: ^0.4.5
+    mmd-parser: ^1.0.4
+    opentype.js: ^1.3.3
+    potpack: ^1.0.1
+    zstddec: ^0.0.2
+  peerDependencies:
+    three: ">=0.128.0"
+  checksum: bebd4723b74b7ab58aa7e4f9911e7a319bdd367070ef9d2206236fb91ae5dcad80374cd98fa909cb7d60b4a9192c77a71f3cd68b863fdaa60194697411b072b0
+  languageName: node
+  linkType: hard
+
 "three-stdlib@npm:^2.23.9, three-stdlib@npm:^2.24.2":
   version: 2.24.2
   resolution: "three-stdlib@npm:2.24.2"
@@ -5267,6 +5311,17 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
+  languageName: node
+  linkType: hard
+
+"use-asset@npm:1.0.4":
+  version: 1.0.4
+  resolution: "use-asset@npm:1.0.4"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+  peerDependencies:
+    react: ">=17.0"
+  checksum: dc87a1ca3aa0af05765255b80c9f027c42b533da3e887362af17e7d9423edfedf11d48d00a181e32b067f66c5036d0442d551394d6f7540e3f5dc6a1a3ebfa9a
   languageName: node
   linkType: hard
 
