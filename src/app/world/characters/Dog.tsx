@@ -1,61 +1,204 @@
-'use client'
+"use client";
 import * as THREE from "three";
 import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import {
+  useAnimations,
+  useGLTF,
+} from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useCharacterContext } from "../contexts/CharacterCustomizationContext";
 
 type GLTFResult = GLTF & {
   nodes: {
-    character_dog: THREE.Mesh;
-    character_dogArmLeft: THREE.Mesh;
-    character_dogArmRight: THREE.Mesh;
-    Cube1339: THREE.Mesh;
-    Cube1339_1: THREE.Mesh;
-    Cube1339_2: THREE.Mesh;
+    Mesh001: THREE.Mesh;
   };
   materials: {
-    'Red.034': THREE.Material;
-    'Black.026': THREE.Material; 
+    "M_Dog.001": THREE.Material;
   };
 };
 
+export default function Model(
+  props: JSX.IntrinsicElements["group"]
+) {
+  const group = useRef();
+  const {
+    nodes,
+    materials,
+    animations,
+  } = useGLTF(
+    "/assets/Dog.glb"
+  ) as GLTFResult;
+  const { actions } = useAnimations(
+    animations,
+    group
+  );
+  const {
+    headColor,
+    mouthColor,
+    eyesColor,
+    bodyColor,
+    legsColor,
+    toeColor,
+  } = useCharacterContext() as any;
 
-export default function Model(props : JSX.IntrinsicElements["group"]) {
-    const { nodes, materials } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/dog/model.gltf') as GLTFResult; 
-    const {
-      headColor,
-      mouthColor,
-      eyesColor, 
-      bodyColor,
-      legsColor,
-      toeColor,
-    } = useCharacterContext() as any;
-   
-    return (
+  console.log(nodes, materials);
+  return (
     <group {...props} dispose={null}>
-        <mesh geometry={nodes.character_dog.geometry} material={nodes.character_dog.material} rotation={[Math.PI / 2, 0, 0,]} >
-          <meshStandardMaterial color={bodyColor}/>
-          <mesh geometry={nodes.character_dogArmLeft.geometry} material={nodes.character_dogArmLeft.material} position={[0.2, 0, -0.63,]}>
-            <meshStandardMaterial color={legsColor}/>
+      <group name='Scene'>
+        <group name='Rig001' scale={1}>
+          <mesh
+            name='Mesh001'
+            castShadow
+            receiveShadow
+            geometry={
+              nodes.Mesh001.geometry
+            }
+            material={
+              materials["M_Dog.001"]
+            }
+          >
+            <meshStandardMaterial
+              color={headColor}
+            />
           </mesh>
-          <mesh geometry={nodes.character_dogArmRight.geometry} material={nodes.character_dogArmRight.material} position={[-0.2, 0, -0.63,]}>
-            <meshStandardMaterial color={toeColor}/>
-          </mesh>
-            <group position={[0, 0, -0.7,]} >
-            <mesh geometry={nodes.Cube1339.geometry} material={nodes.Cube1339.material}>
-              <meshStandardMaterial color={headColor}/>
-            </mesh>        
-            <mesh geometry={nodes.Cube1339_1.geometry}>
-              <meshStandardMaterial {...materials['Red.034']} color={mouthColor}/>
-            </mesh>
-            <mesh geometry={nodes.Cube1339_2.geometry}>          
-              <meshStandardMaterial {...materials['Black.026']} color={eyesColor}/>
-            </mesh>
+          <group
+            name='root'
+            rotation={[
+              -Math.PI / 2,
+              0,
+              0,
+            ]}
+          >
+            <group
+              name='body'
+              position={[
+                0, 0.034, 0.731,
+              ]}
+              rotation={[
+                Math.PI / 2,
+                0,
+                0,
+              ]}
+            >
+              <meshStandardMaterial
+                color={bodyColor}
+              />
             </group>
-        </mesh>
+            <group
+              name='earL'
+              position={[
+                0.284, 1.312, 0.451,
+              ]}
+              rotation={[
+                0.348, 0.139, -2.672,
+              ]}
+            >
+              <meshStandardMaterial
+                color={eyesColor}
+              />
+            </group>
+            <group
+              name='earL01'
+              position={[0, 0.275, 0]}
+              rotation={[
+                -0.314, 0.038, -0.195,
+              ]}
+            >
+              <meshStandardMaterial
+                color={eyesColor}
+              />
+            </group>
+          </group>
+          <group
+            name='earR'
+            position={[
+              -0.284, 1.312, 0.451,
+            ]}
+            rotation={[
+              0.348, -0.139, 2.672,
+            ]}
+          >
+            <meshStandardMaterial
+              color={eyesColor}
+            />
+          </group>
+          <group
+            name='earR01'
+            position={[0, 0.275, 0]}
+            rotation={[
+              -0.314, -0.038, 0.195,
+            ]}
+          >
+            <meshStandardMaterial
+              color={eyesColor}
+            />
+          </group>
+        </group>
+        <group
+          name='tail01'
+          position={[0, 0.26, -0.784]}
+          rotation={[
+            1.108,
+            0,
+            -Math.PI,
+          ]}
+        >
+          <meshStandardMaterial
+            color={toeColor}
+          />
+          <group
+            name='tail02'
+            position={[0, 0.503, 0]}
+            rotation={[0.002, 0, 0]}
+          />
+        </group>
+        <group
+          name='legFL'
+          position={[
+            0.358, 0.111, 0.357,
+          ]}
+          rotation={[0, 0, -Math.PI]}
+        >
+          <meshStandardMaterial
+            color={legsColor}
+          />
+        </group>
+        <group
+          name='legBL'
+          position={[
+            0.358, 0.111, -0.654,
+          ]}
+          rotation={[0, 0, -Math.PI]}
+        >
+          <meshStandardMaterial
+            color={legsColor}
+          />
+        </group>
+        <group
+          name='legFR'
+          position={[
+            -0.358, 0.111, 0.357,
+          ]}
+          rotation={[0, 0, -Math.PI]}
+        >
+          <meshStandardMaterial
+            color={legsColor}
+          />
+        </group>
+        <group
+          name='legBR'
+          position={[
+            -0.358, 0.111, -0.654,
+          ]}
+          rotation={[0, 0, -Math.PI]}
+        >
+          <meshStandardMaterial
+            color={legsColor}
+          />
+        </group>
+      </group>
     </group>
-    )
+  );
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/dog/model.gltf')
+useGLTF.preload("/assets/Dog.glb");
