@@ -6,14 +6,20 @@ import { GLTF } from "three-stdlib";
 import { useCharacterContext } from "../contexts/CharacterCustomizationContext";
 import { useCharacterAnimations } from "../contexts/CharacterAnimations";
 
+
 type GLTFResult = GLTF & {
   nodes: {
-    body: THREE.Mesh;
-    ear: THREE.Mesh;
-    eyes: THREE.Mesh;
-    legs: THREE.Mesh;
-    nose: THREE.Mesh;
-    tail: THREE.Mesh;
+    body: THREE.SkinnedMesh;
+    bodybelly: THREE.SkinnedMesh;
+    ear: THREE.SkinnedMesh;
+    eyes: THREE.SkinnedMesh;
+    eyesbg: THREE.SkinnedMesh;
+    eyesbrow: THREE.SkinnedMesh;
+    legs: THREE.SkinnedMesh;
+    legstoe: THREE.SkinnedMesh;
+    nose: THREE.SkinnedMesh;
+    tail: THREE.SkinnedMesh;
+    root: THREE.Bone;
   };
   materials: {
     M_Dog: THREE.MeshStandardMaterial;
@@ -36,56 +42,71 @@ export function Dog(props: JSX.IntrinsicElements["group"]) {
   useEffect(() => {}, []);
 
   return (
-    <group {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <mesh
-          name="body"
-          castShadow
-          receiveShadow
-          geometry={nodes.body.geometry}
-          material={materials.M_Dog}
-          scale={0.4}
-        />
-        <mesh
-          name="ear"
-          castShadow
-          receiveShadow
-          geometry={nodes.ear.geometry}
-          material={materials.M_Dog}
-          scale={0.4}
-        />
-        <mesh
-          name="eyes"
-          castShadow
-          receiveShadow
-          geometry={nodes.eyes.geometry}
-          material={materials.M_Dog}
-          scale={0.4}
-        />
-        <mesh
-          name="legs"
-          castShadow
-          receiveShadow
-          geometry={nodes.legs.geometry}
-          material={materials.M_Dog}
-          scale={0.4}
-        />
-        <mesh
-          name="nose"
-          castShadow
-          receiveShadow
-          geometry={nodes.nose.geometry}
-          material={materials.M_Dog}
-          scale={0.4}
-        />
-        <mesh
-          name="tail"
-          castShadow
-          receiveShadow
-          geometry={nodes.tail.geometry}
-          material={materials.M_Dog}
-          scale={0.4}
-        />
+        <group name="Rig" scale={0.4}>
+          <skinnedMesh
+            name="body"
+            geometry={nodes.body.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.body.skeleton}
+          />
+          <skinnedMesh
+            name="bodybelly"
+            geometry={nodes.bodybelly.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.bodybelly.skeleton}
+          />
+          <skinnedMesh
+            name="ear"
+            geometry={nodes.ear.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.ear.skeleton}
+          />
+          <skinnedMesh
+            name="eyes"
+            geometry={nodes.eyes.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.eyes.skeleton}
+          />
+          <skinnedMesh
+            name="eyesbg"
+            geometry={nodes.eyesbg.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.eyesbg.skeleton}
+          />
+          <skinnedMesh
+            name="eyesbrow"
+            geometry={nodes.eyesbrow.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.eyesbrow.skeleton}
+          />
+          <skinnedMesh
+            name="legs"
+            geometry={nodes.legs.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.legs.skeleton}
+          />
+          <skinnedMesh
+            name="legstoe"
+            geometry={nodes.legstoe.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.legstoe.skeleton}
+          />
+          <skinnedMesh
+            name="nose"
+            geometry={nodes.nose.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.nose.skeleton}
+          />
+          <skinnedMesh
+            name="tail"
+            geometry={nodes.tail.geometry}
+            material={materials.M_Dog}
+            skeleton={nodes.tail.skeleton}
+          />
+          <primitive object={nodes.root} />
+        </group>
       </group>
     </group>
   );
