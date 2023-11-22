@@ -6,7 +6,7 @@ import {
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import { Dog } from "@/app/world/characters/Dog";
+import { Dog } from "@/app/make/characters/Dog";
 import CharacterCamera from "./CharacterCamera";
 import * as THREE from "three";
 
@@ -64,7 +64,35 @@ const CharacterController = () => {
         changeRotation = true;
       }
 
+      if (changeRotation && character.current) {
+        const angle = Math.atan2(impulse.x, impulse.z);
+        character.current.rotation.y = angle;
+      }
+
       rigidbody.current.setLinvel(impulse, true);
+    }
+
+    if (character.current) {
+      const characterPos = character.current.getWorldPosition(
+        new THREE.Vector3()
+      );
+
+      const worldPos = character.current.getWorldPosition(new THREE.Vector3());
+      const targetPos = new THREE.Vector3(worldPos.x, 1, worldPos.z - 2);
+      const targetLookAt = targetPos.clone();
+      const direction = new THREE.Vector3();
+      const position = new THREE.Vector3();
+
+      state.camera.position.lerp(targetPos, 0.1);
+      state.camera.getWorldDirection(direction);
+      state.camera.getWorldPosition(position);
+
+      const curLookAt = position.clone().add(direction);
+      const lerpedLookAt = new THREE.Vector3();
+      lerpedLookAt.lerpVectors(curLookAt, targetLookAt, 0.1);
+
+      state.camera.lookAt(lerpedLookAt);
+      state.camera.updateProjectionMatrix();
     }
   });
 
@@ -72,7 +100,7 @@ const CharacterController = () => {
     <RigidBody
       ref={rigidbody}
       colliders={false}
-      scale={[0.2, 0.2, 0.2]}
+      scale={[0.6, 0.6, 0.6]}
       position={[0, 0, 1]}
       enabledRotations={[false, false, false]}
       onCollisionEnter={() => {

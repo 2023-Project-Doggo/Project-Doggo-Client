@@ -1,8 +1,7 @@
-import { useCharacterAnimations } from "@/app/world/contexts/CharacterAnimations";
 import {
   CameraModes,
   useCharacterContext,
-} from "@/app/world/contexts/CharacterCustomizationContext";
+} from "@/app/make/contexts/CharacterCustomizationContext";
 import { FaceConfigurator } from "./Configurator/FaceConfigurator";
 import { BodyConfigurator } from "./Configurator/BodyConfigurator";
 import { useRouter } from "next/navigation";
@@ -10,8 +9,6 @@ import { Affix, Button } from "@mantine/core";
 
 const Interface = () => {
   const router = useRouter();
-  const { animations, animationIndex, setAnimationIndex } =
-    useCharacterAnimations() as any;
   const { cameraMode, setCameraMode, setTakeScreenshot } =
     useCharacterContext() as any;
   return (

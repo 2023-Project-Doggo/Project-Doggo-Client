@@ -1,6 +1,6 @@
 "use client";
 import { CameraControls } from "./CameraControls";
-import { Dog } from "@/app/world/characters/Dog";
+import { Dog } from "@/app/make/characters/Dog";
 
 const Make = () => {
   return (

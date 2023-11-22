@@ -3,9 +3,10 @@ import { PerspectiveCamera } from "@react-three/drei";
 const CharacterCamera = () => {
   return (
     <PerspectiveCamera
-      fov={75}
-      makeDefault={true}
-      position={[0, 2, 6]}></PerspectiveCamera>
+      makeDefault
+      position={[0, 1, 0]}
+      args={[45, 1.2, 1, 100]}
+    />
   );
 };
 

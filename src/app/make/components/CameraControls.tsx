@@ -5,7 +5,7 @@ import { useFrame, extend } from "@react-three/fiber";
 import {
   CameraModes,
   useCharacterContext,
-} from "@/app/world/contexts/CharacterCustomizationContext";
+} from "@/app/make/contexts/CharacterCustomizationContext";
 
 import { useRef } from "react";
 import * as THREE from "three";

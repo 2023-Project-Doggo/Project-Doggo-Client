@@ -56,14 +56,14 @@ const CharacterCustomizationProvider = ({
   children: React.ReactNode;
 }) => {
   const [cameraMode, setCameraMode] = useState(CameraModes.FREE);
-  const [earColor, setEarColor] = useState();
-  const [eyesColor, setEyesColor] = useState();
-  const [noseColor, setNoseColor] = useState();
-  const [skinColor, setSkinColor] = useState();
-  const [bellyColor, setBellyColor] = useState();
-  const [legsColor, setLegsColor] = useState();
-  const [toeColor, setToeColor] = useState();
-  const [tailColor, setTailColor] = useState();
+  const [earColor, setEarColor] = useState("#b87348");
+  const [eyesColor, setEyesColor] = useState("#b87348");
+  const [noseColor, setNoseColor] = useState("#b87348");
+  const [skinColor, setSkinColor] = useState("#de9466");
+  const [bellyColor, setBellyColor] = useState("#b87348");
+  const [legsColor, setLegsColor] = useState("#de9466");
+  const [toeColor, setToeColor] = useState("#b87348");
+  const [tailColor, setTailColor] = useState("#de9466");
   const [morphTargetDictionary, setMorphTargetDictionary] = useState([]);
   const [morphTargetInfluences, setMorphTargetInfluences] = useState([]);
 

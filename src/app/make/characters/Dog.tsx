@@ -34,7 +34,7 @@ export function Dog(props: JSX.IntrinsicElements["group"]) {
     "/assets/Dog.glb"
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
-  const characterState = useCharacterAnimations();
+
   const {
     earColor,
     eyesColor,
