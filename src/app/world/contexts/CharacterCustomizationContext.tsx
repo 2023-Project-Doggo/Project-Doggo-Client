@@ -1,35 +1,36 @@
-'use client'
+"use client";
 import { createContext, useContext, useMemo, useState } from "react";
-
 interface CustomizingContextValue {
-  cameraMode : string;
-  setCameraMode : (cameraMode: string) => void;
-  headColor : string;
-  setHeadColor : (hairColor: string) => void;
-  mouthColor : string;
-  setMouthColor : (mouthColor: string) => void;
-  eyesColor : string;
-  setEyesColor : (eyesColor: string) => void;
-  skinColor : string; 
-  setSkinColor : (skinColor: string) => void;
-  bodyColor : string;
-  setbodyColor : (bodyColor: string) => void;
-  legsColor : string;
-  setLegsColor : (legsColor: string) => void;
-  toeColor :  string;
-  setToeColor : (toeColor: string) => void;
-  morphTargetDictionary : Object;
-  setMorphTargetDictionary : (morphTargetDictionary: Object) => void;
-  morphTargetInfluences : [];
-  setMorphTargetInfluences : (morphTargetInfluences : []) => void; 
+  cameraMode: string;
+  setCameraMode: (cameraMode: string) => void;
+  earColor: string;
+  setEarColor: (earColor: string) => void;
+  eyesColor: string;
+  setEyesColor: (eyesColor: string) => void;
+  noseColor: string;
+  setNoseColor: (eyesColor: string) => void;
+  bodyColor: string;
+  setbodyColor: (bodyColor: string) => void;
+  bellyColor: string;
+  setBellyColor: (bodyBelly: string) => void;
+  legsColor: string;
+  setLegsColor: (legsColor: string) => void;
+  toeColor: string;
+  setToeColor: (toeColor: string) => void;
+  tailColor: string;
+  setTailColor: (tailColor: string) => void;
+  morphTargetDictionary: Object;
+  setMorphTargetDictionary: (morphTargetDictionary: Object) => void;
+  morphTargetInfluences: [];
+  setMorphTargetInfluences: (morphTargetInfluences: []) => void;
 }
 
 const CharacterCustomizationContext = createContext({});
 
 export const CameraModes = {
   FREE: "FREE",
-  HEAD: "HEAD",
-  BODY: "BODY", 
+  FACE: "FACE",
+  BODY: "BODY",
 };
 
 export const SwatchesColors = [
@@ -49,64 +50,76 @@ export const SwatchesColors = [
   "#fd7e14",
 ];
 
-const CharacterCustomizationProvider = ({ children }: { children: React.ReactNode }) => { 
+const CharacterCustomizationProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [cameraMode, setCameraMode] = useState(CameraModes.FREE);
-  const [headColor, setHeadColor] = useState();
+  const [earColor, setEarColor] = useState();
   const [eyesColor, setEyesColor] = useState();
-  const [mouthColor, setMouthColor] = useState(); 
+  const [noseColor, setNoseColor] = useState();
   const [skinColor, setSkinColor] = useState();
-  const [bodyColor, setbodyColor] = useState();
+  const [bellyColor, setBellyColor] = useState();
   const [legsColor, setLegsColor] = useState();
-  const [toeColor, setToeColor] = useState();  
+  const [toeColor, setToeColor] = useState();
+  const [tailColor, setTailColor] = useState();
   const [morphTargetDictionary, setMorphTargetDictionary] = useState([]);
   const [morphTargetInfluences, setMorphTargetInfluences] = useState([]);
 
- const contextValue = useMemo(() => ({         
-  cameraMode,
-  setCameraMode,
-  headColor,
-  setHeadColor,
-  mouthColor,
-  setMouthColor,
-  eyesColor,
-  setEyesColor, 
-  skinColor,
-  setSkinColor,
-  bodyColor,
-  setbodyColor,
-  legsColor,
-  setLegsColor,
-  toeColor,
-  setToeColor,  
-  morphTargetDictionary,
-  setMorphTargetDictionary,
-  morphTargetInfluences,
-  setMorphTargetInfluences}), 
-  [ 
-    cameraMode,
-    setCameraMode,
-    headColor,
-    setHeadColor,
-    mouthColor,
-    setMouthColor,
-    eyesColor,
-    setEyesColor, 
-    skinColor,
-    setSkinColor,
-    bodyColor,
-    setbodyColor,
-    legsColor,
-    setLegsColor,
-    toeColor,
-    setToeColor,  
-    morphTargetDictionary,
-    setMorphTargetDictionary,
-    morphTargetInfluences,
-    setMorphTargetInfluences,
-  ]);
+  const contextValue = useMemo(
+    () => ({
+      cameraMode,
+      setCameraMode,
+      earColor,
+      setEarColor,
+      eyesColor,
+      setEyesColor,
+      noseColor,
+      setNoseColor,
+      skinColor,
+      setSkinColor,
+      bellyColor,
+      setBellyColor,
+      legsColor,
+      setLegsColor,
+      toeColor,
+      setToeColor,
+      tailColor,
+      setTailColor,
+      morphTargetDictionary,
+      setMorphTargetDictionary,
+      morphTargetInfluences,
+      setMorphTargetInfluences,
+    }),
+    [
+      cameraMode,
+      setCameraMode,
+      earColor,
+      setEarColor,
+      eyesColor,
+      setEyesColor,
+      noseColor,
+      setNoseColor,
+      skinColor,
+      setSkinColor,
+      bellyColor,
+      setBellyColor,
+      legsColor,
+      setLegsColor,
+      toeColor,
+      setToeColor,
+      tailColor,
+      setTailColor,
+      morphTargetDictionary,
+      setMorphTargetDictionary,
+      morphTargetInfluences,
+      setMorphTargetInfluences,
+    ]
+  );
 
   return (
-    <CharacterCustomizationContext.Provider value={contextValue} >
+    <CharacterCustomizationContext.Provider value={contextValue}>
       {children}
     </CharacterCustomizationContext.Provider>
   );
@@ -114,8 +127,11 @@ const CharacterCustomizationProvider = ({ children }: { children: React.ReactNod
 
 const useCharacterContext = () => {
   const ctx = useContext(CharacterCustomizationContext);
-  if (!ctx) throw new Error('Cannot find CharacterContext. It should be wrapped within CharacterCustomizationProvider.');
+  if (!ctx)
+    throw new Error(
+      "Cannot find CharacterContext. It should be wrapped within CharacterCustomizationProvider."
+    );
   return ctx;
 };
 
-export { useCharacterContext, CharacterCustomizationProvider }
+export { useCharacterContext, CharacterCustomizationProvider };
