@@ -1,10 +1,10 @@
 "use client";
 import {KeyboardControls, KeyboardControlsEntry} from "@react-three/drei";
-import {Suspense, useMemo} from "react";
+import {Suspense, useEffect, useMemo} from "react";
 import {Canvas} from "@react-three/fiber";
 import {Physics} from "@react-three/rapier";
-import Field from "./components/Field";
-import {Controls} from "./components/CharacterController";
+import { Controls } from "@/app/town/components/CharacterController";
+import Field from "@/app/town/components/Field";
 
 const Town = () => {
   const map = useMemo<KeyboardControlsEntry<string>[]>(

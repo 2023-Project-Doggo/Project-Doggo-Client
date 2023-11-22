@@ -1,28 +1,25 @@
-import { OrbitControls } from "@react-three/drei";
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib' 
-extend({ OrbitControls })
-import { useFrame, extend } from "@react-three/fiber";
-import {
-  CameraModes,
-  useCharacterContext,
-} from "@/app/world/contexts/CharacterCustomizationContext";
+import {OrbitControls} from "@react-three/drei";
+import type {OrbitControls as OrbitControlsImpl} from "three-stdlib";
+extend({OrbitControls});
+import {useFrame, extend} from "@react-three/fiber";
+import {CameraModes, useCharacterContext} from "@/app/world/contexts/CharacterCustomizationContext";
 
-import { useRef } from "react";
+import {useRef} from "react";
 import * as THREE from "three";
 
 const cameraPositions = {
   [CameraModes.HEAD]: {
-    position: new THREE.Vector3(0, 0.2, 2),
-    target: new THREE.Vector3(0, 0.2, 0),
-  }, 
+    position: new THREE.Vector3(0.2, 0.2, 1),
+    target: new THREE.Vector3(0, 0, 0),
+  },
   [CameraModes.BODY]: {
-    position: new THREE.Vector3(0.5, -0.5, 1.5),
+    position: new THREE.Vector3(-0.5, -0.2, 1.2),
     target: new THREE.Vector3(0, -0.5, 0),
   },
 };
 
 export const CameraControls = () => {
-  const { cameraMode, setCameraMode } = useCharacterContext() as any;
+  const {cameraMode, setCameraMode} = useCharacterContext() as any;
   const orbitControls = useRef<OrbitControlsImpl>(null);
 
   useFrame((state, delta) => {
@@ -30,10 +27,8 @@ export const CameraControls = () => {
       return;
     }
     state.camera.position.lerp(cameraPositions[cameraMode].position, 3 * delta);
-    orbitControls.current && orbitControls.current.target.lerp(
-      cameraPositions[cameraMode].target,
-      3 * delta
-    );
+    orbitControls.current &&
+      orbitControls.current.target.lerp(cameraPositions[cameraMode].target, 3 * delta);
   });
 
   return (
