@@ -3,7 +3,7 @@ import {
   RigidBody,
   RapierRigidBody,
 } from "@react-three/rapier";
-import { useKeyboardControls } from "@react-three/drei";
+import { OrbitControls, useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Dog } from "@/app/make/characters/Dog";
@@ -18,10 +18,9 @@ export const Controls = {
   jump: "jump",
 };
 
-const JUMP_FORCE = 0.5;
+const JUMP_FORCE = 2;
 const MOVEMENT_SPEED = 5;
 const MAX_VEL = 3;
-const RUN_VEL = 2;
 
 const CharacterController = () => {
   const rigidbody = useRef<RapierRigidBody>(null);
@@ -37,6 +36,10 @@ const CharacterController = () => {
 
   useFrame((state) => {
     const impulse = { x: 0, y: 0, z: 0 };
+    const frontV = new THREE.Vector3();
+    const sideV = new THREE.Vector3();
+    const direction = new THREE.Vector3();
+    const position = new THREE.Vector3();
 
     if (rigidbody.current) {
       const linvel = rigidbody.current.linvel();
@@ -70,29 +73,31 @@ const CharacterController = () => {
       }
 
       rigidbody.current.setLinvel(impulse, true);
-    }
 
-    if (character.current) {
-      const characterPos = character.current.getWorldPosition(
-        new THREE.Vector3()
-      );
+      if (character.current) {
+        // camera follow movement
+        const worldPos = character.current.getWorldPosition(
+          new THREE.Vector3()
+        );
+        const targetPos = new THREE.Vector3(
+          worldPos.x,
+          worldPos.y + 1,
+          worldPos.z
+        );
+        state.camera.position.lerp(targetPos, 0.1);
 
-      const worldPos = character.current.getWorldPosition(new THREE.Vector3());
-      const targetPos = new THREE.Vector3(worldPos.x, 1, worldPos.z - 2);
-      const targetLookAt = targetPos.clone();
-      const direction = new THREE.Vector3();
-      const position = new THREE.Vector3();
+        // camera follow direction
 
-      state.camera.position.lerp(targetPos, 0.1);
-      state.camera.getWorldDirection(direction);
-      state.camera.getWorldPosition(position);
-
-      const curLookAt = position.clone().add(direction);
-      const lerpedLookAt = new THREE.Vector3();
-      lerpedLookAt.lerpVectors(curLookAt, targetLookAt, 0.1);
-
-      state.camera.lookAt(lerpedLookAt);
-      state.camera.updateProjectionMatrix();
+        // const targetLookAt = targetPos.clone();
+        // state.camera.position.lerp(targetPos, 0.1);
+        // state.camera.getWorldDirection(direction);
+        // state.camera.getWorldPosition(position);
+        // const curLookAt = position.clone().add(direction);
+        // const lerpedLookAt = new THREE.Vector3();
+        // lerpedLookAt.lerpVectors(curLookAt, targetLookAt, 0.1);
+        // state.camera.lookAt(lerpedLookAt);
+        // state.camera.updateProjectionMatrix();
+      }
     }
   });
 
@@ -104,7 +109,7 @@ const CharacterController = () => {
       position={[0, 0, 1]}
       enabledRotations={[false, false, false]}
       onCollisionEnter={() => {
-        isOnFloor.current! = true;
+        isOnFloor.current = true;
       }}>
       <CapsuleCollider args={[0.8, 0]}>
         <group ref={character}>
