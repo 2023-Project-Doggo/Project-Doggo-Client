@@ -39,7 +39,7 @@ const Landing = () => {
           </div>
           <Link
             className="mt-2 border border-[#bdc7de] text-center text-[#1053F3] rounded-2xl px-4 py-1"
-            href="/world">
+            href="/make">
             Start free
           </Link>
         </div>
@@ -58,7 +58,7 @@ const Landing = () => {
           </div>
           <Link
             className="mt-2 border border-[#bdc7de] text-center text-[#1053F3] rounded-2xl px-4 py-1"
-            href="/world">
+            href="/make">
             Start free
           </Link>
         </div>
@@ -69,9 +69,6 @@ const Landing = () => {
           Here are the actual footage of DogGo!
         </p>
         <div className="mt-16 grid sm:grid-flow-row md:grid-flow-col gap-4">
-          <div className="relative sm:w-[358px] sm:h-[232px] md:w-[494px] md:h-[320px] bg-white border-8 border-[#FFFFFF] shadow-sm sm:rounded-lg md:rounded-2xl">
-            <Image alt={"doggo-footage"} fill src={"/img/footage_1.png"} />
-          </div>
           <div className="relative sm:w-[358px] sm:h-[232px] md:w-[494px] md:h-[320px] bg-white border-8 border-[#FFFFFF] shadow-sm sm:rounded-lg md:rounded-2xl">
             <Image alt={"doggo-footage"} fill src={"/img/footage_1.png"} />
           </div>
