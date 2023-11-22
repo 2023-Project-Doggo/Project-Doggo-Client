@@ -8,8 +8,12 @@ import { useCharacterAnimations } from "../contexts/CharacterAnimations";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Mesh: THREE.SkinnedMesh;
-    root: THREE.Bone;
+    body: THREE.Mesh;
+    ear: THREE.Mesh;
+    eyes: THREE.Mesh;
+    legs: THREE.Mesh;
+    nose: THREE.Mesh;
+    tail: THREE.Mesh;
   };
   materials: {
     M_Dog: THREE.MeshStandardMaterial;
@@ -32,17 +36,56 @@ export function Dog(props: JSX.IntrinsicElements["group"]) {
   useEffect(() => {}, []);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group {...props} dispose={null}>
       <group name="Scene">
-        <group name="Rig">
-          <skinnedMesh
-            name="Mesh"
-            geometry={nodes.Mesh.geometry}
-            material={materials.M_Dog}
-            skeleton={nodes.Mesh.skeleton}
-          />
-          <primitive object={nodes.root} />
-        </group>
+        <mesh
+          name="body"
+          castShadow
+          receiveShadow
+          geometry={nodes.body.geometry}
+          material={materials.M_Dog}
+          scale={0.4}
+        />
+        <mesh
+          name="ear"
+          castShadow
+          receiveShadow
+          geometry={nodes.ear.geometry}
+          material={materials.M_Dog}
+          scale={0.4}
+        />
+        <mesh
+          name="eyes"
+          castShadow
+          receiveShadow
+          geometry={nodes.eyes.geometry}
+          material={materials.M_Dog}
+          scale={0.4}
+        />
+        <mesh
+          name="legs"
+          castShadow
+          receiveShadow
+          geometry={nodes.legs.geometry}
+          material={materials.M_Dog}
+          scale={0.4}
+        />
+        <mesh
+          name="nose"
+          castShadow
+          receiveShadow
+          geometry={nodes.nose.geometry}
+          material={materials.M_Dog}
+          scale={0.4}
+        />
+        <mesh
+          name="tail"
+          castShadow
+          receiveShadow
+          geometry={nodes.tail.geometry}
+          material={materials.M_Dog}
+          scale={0.4}
+        />
       </group>
     </group>
   );
