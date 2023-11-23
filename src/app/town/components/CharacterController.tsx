@@ -4,17 +4,11 @@ import {
   RapierRigidBody,
   vec3,
 } from "@react-three/rapier";
-import {
-  CameraControls,
-  OrbitControls,
-  useKeyboardControls,
-} from "@react-three/drei";
+import { CameraControls, useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Dog } from "@/app/make/characters/Dog";
-import CharacterCamera from "./CharacterCamera";
 import * as THREE from "three";
-import useIsMobile from "@/hooks/useIsMobile";
 
 export const Controls = {
   forward: "forward",
@@ -80,7 +74,7 @@ const CharacterController = () => {
     }
 
     const cameraDistanceY = window.innerWidth < 1024 ? 1 : 3;
-    const cameraDistanceZ = window.innerWidth < 1024 ? 1 : 2;
+    const cameraDistanceZ = window.innerWidth < 1024 ? 3 : 2;
     const playerWorldPos = vec3(rigidbody.current.translation());
     controls.current.setLookAt(
       playerWorldPos.x,
@@ -103,7 +97,13 @@ const CharacterController = () => {
       onCollisionEnter={() => {
         isOnFloor.current = true;
       }}>
-      <CameraControls ref={controls} />
+      <CameraControls
+        makeDefault
+        ref={controls}
+        verticalDragToForward={true}
+        minDistance={0}
+        maxDistance={100}
+      />
       <CapsuleCollider args={[0.8, 0]}>
         <group ref={character}>
           <Dog />
