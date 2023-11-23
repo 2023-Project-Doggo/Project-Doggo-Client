@@ -1,15 +1,12 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
-import Header from "@/components/Header/Header";
 import Interface from "@/app/make/components/Interface";
 import Make from "@/app/make/components/Make";
-import { Sky, useProgress } from "@react-three/drei";
+import { Sky } from "@react-three/drei";
 import { Suspense } from "react";
 import { Physics } from "@react-three/rapier";
 
 const World = () => {
-  const progress = useProgress();
-  console.log(progress);
   return (
     <>
       <Interface />
@@ -24,7 +21,6 @@ const World = () => {
           </Physics>
         </Suspense>
       </Canvas>
-      <Header />
     </>
   );
 };

@@ -1,6 +1,8 @@
 "use client";
 import { createContext, useContext, useMemo, useState } from "react";
 interface CustomizingContextValue {
+  userName: string;
+  setUserName: (value: string) => void;
   cameraMode: string;
   setCameraMode: (cameraMode: string) => void;
   earColor: string;
@@ -23,6 +25,8 @@ interface CustomizingContextValue {
   setMorphTargetDictionary: (morphTargetDictionary: Object) => void;
   morphTargetInfluences: [];
   setMorphTargetInfluences: (morphTargetInfluences: []) => void;
+  takeScreenshot: boolean;
+  setTakeScreenshot: (takeScreenshot: boolean) => void;
 }
 
 const CharacterCustomizationContext = createContext({});
@@ -56,6 +60,8 @@ const CharacterCustomizationProvider = ({
   children: React.ReactNode;
 }) => {
   const [cameraMode, setCameraMode] = useState(CameraModes.FREE);
+  const [takeScreenshot, setTakeScreenshot] = useState<boolean>(false);
+  const [userName, setUserName] = useState("홍대컴공이");
   const [earColor, setEarColor] = useState("#b87348");
   const [eyesColor, setEyesColor] = useState("#b87348");
   const [noseColor, setNoseColor] = useState("#b87348");
@@ -71,6 +77,10 @@ const CharacterCustomizationProvider = ({
     () => ({
       cameraMode,
       setCameraMode,
+      takeScreenshot,
+      setTakeScreenshot,
+      userName,
+      setUserName,
       earColor,
       setEarColor,
       eyesColor,
@@ -95,6 +105,8 @@ const CharacterCustomizationProvider = ({
     [
       cameraMode,
       setCameraMode,
+      userName,
+      setUserName,
       earColor,
       setEarColor,
       eyesColor,

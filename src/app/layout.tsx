@@ -3,7 +3,7 @@ import QueryProvider from "@/providers/QueryProvider";
 import "@mantine/core/styles.css";
 import "@/styles/globals.css";
 import Head from "next/head";
-import { CharacterCustomizationProvider } from "./make/contexts/CharacterCustomizationContext";
+import { CharacterCustomizationProvider } from "../contexts/CharacterCustomizationContext";
 
 export default function RootLayout({
   children,

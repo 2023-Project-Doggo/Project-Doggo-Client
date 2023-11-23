@@ -3,8 +3,8 @@ import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { useCharacterContext } from "../contexts/CharacterCustomizationContext";
-import { useCharacterAnimations } from "../contexts/CharacterAnimations";
+import { useCharacterContext } from "@/contexts/CharacterCustomizationContext";
+import { useCharacterAnimations } from "@/contexts/CharacterAnimations";
 
 type GLTFResult = GLTF & {
   nodes: {

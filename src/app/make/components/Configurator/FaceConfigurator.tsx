@@ -2,7 +2,7 @@ import { Stack, ColorInput } from "@mantine/core";
 import {
   SwatchesColors,
   useCharacterContext,
-} from "@/app/make/contexts/CharacterCustomizationContext";
+} from "@/contexts/CharacterCustomizationContext";
 
 export const FaceConfigurator = () => {
   const {

@@ -1,7 +1,7 @@
 import {
   SwatchesColors,
   useCharacterContext,
-} from "@/app/make/contexts/CharacterCustomizationContext";
+} from "@/contexts/CharacterCustomizationContext";
 import { ColorInput, Stack } from "@mantine/core";
 
 export const BodyConfigurator = () => {
