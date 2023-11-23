@@ -2,8 +2,13 @@ import {
   CapsuleCollider,
   RigidBody,
   RapierRigidBody,
+  vec3,
 } from "@react-three/rapier";
-import { OrbitControls, useKeyboardControls } from "@react-three/drei";
+import {
+  CameraControls,
+  OrbitControls,
+  useKeyboardControls,
+} from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Dog } from "@/app/make/characters/Dog";
@@ -27,6 +32,7 @@ const CharacterController = () => {
   const rigidbody = useRef<RapierRigidBody>(null);
   const isOnFloor = useRef(true);
   const character = useRef<THREE.Group>(null);
+  const controls = useRef<CameraControls>(null);
   const jumpPressed = useKeyboardControls((state) => state[Controls.jump]);
   const leftPressed = useKeyboardControls((state) => state[Controls.left]);
   const rightPressed = useKeyboardControls((state) => state[Controls.right]);
@@ -34,12 +40,10 @@ const CharacterController = () => {
   const forwardPressed = useKeyboardControls(
     (state) => state[Controls.forward]
   );
-  const mobile = useIsMobile();
 
-  useFrame((state) => {
+  useFrame(() => {
+    if (!rigidbody.current || !character.current || !controls.current) return;
     const impulse = { x: 0, y: 0, z: 0 };
-    const direction = new THREE.Vector3();
-    const position = new THREE.Vector3();
 
     if (rigidbody.current) {
       const linvel = rigidbody.current.linvel();
@@ -73,35 +77,22 @@ const CharacterController = () => {
       }
 
       rigidbody.current.setLinvel(impulse, true);
-
-      if (character.current) {
-        // camera follow movement
-        const worldPos = character.current.getWorldPosition(
-          new THREE.Vector3()
-        );
-        const targetPos = new THREE.Vector3(
-          -worldPos.x,
-          worldPos.y + 1,
-          -worldPos.z
-        );
-        state.camera.position.lerp(targetPos, 0.1);
-        state.camera.lookAt(worldPos.x + 4, worldPos.y + 1, worldPos.z + 4);
-
-        // camera follow direction
-
-        // const targetLookAt = targetPos.clone();
-        // state.camera.position.lerp(targetPos, 0.1);
-        // state.camera.getWorldDirection(direction);
-        // state.camera.getWorldPosition(position);
-        // const curLookAt = position.clone().add(direction);
-        // const lerpedLookAt = new THREE.Vector3();
-        // lerpedLookAt.lerpVectors(curLookAt, targetLookAt, 0.1);
-        // state.camera.lookAt(lerpedLookAt);
-        // state.camera.updateProjectionMatrix();
-      }
     }
+
+    const cameraDistanceY = window.innerWidth < 1024 ? 1 : 3;
+    const cameraDistanceZ = window.innerWidth < 1024 ? 1 : 2;
+    const playerWorldPos = vec3(rigidbody.current.translation());
+    controls.current.setLookAt(
+      playerWorldPos.x,
+      playerWorldPos.y + cameraDistanceY,
+      playerWorldPos.z + cameraDistanceZ,
+      playerWorldPos.x,
+      playerWorldPos.y + 1.5,
+      playerWorldPos.z,
+      true
+    );
   });
-  console.log(mobile);
+
   return (
     <RigidBody
       ref={rigidbody}
@@ -112,10 +103,9 @@ const CharacterController = () => {
       onCollisionEnter={() => {
         isOnFloor.current = true;
       }}>
-      {mobile && <OrbitControls />}
+      <CameraControls ref={controls} />
       <CapsuleCollider args={[0.8, 0]}>
         <group ref={character}>
-          <CharacterCamera />
           <Dog />
         </group>
       </CapsuleCollider>
