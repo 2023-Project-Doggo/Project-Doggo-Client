@@ -7,7 +7,7 @@ import CharacterController from "./CharacterController";
 const Field = () => {
   return (
     <Suspense>
-      <Physics debug gravity={[0, -20, 0]}>
+      <Physics gravity={[0, -20, 0]}>
         <CharacterController />
         <RigidBody colliders={"hull"} position={[0, 0, 0]} type="fixed">
           <Farm />

@@ -37,7 +37,14 @@ const CharacterController = () => {
 
   useFrame(() => {
     if (!rigidbody.current || !character.current || !controls.current) return;
+    const curY = rigidbody.current.translation().y;
     const impulse = { x: 0, y: 0, z: 0 };
+
+    if (curY < 0) {
+      rigidbody.current.setTranslation(vec3({ x: 6, y: 2, z: 0 }), true);
+      rigidbody.current.setLinvel(vec3({ x: 0, y: 0, z: 0 }), true);
+      rigidbody.current.applyImpulse(impulse, true);
+    }
 
     if (rigidbody.current) {
       const linvel = rigidbody.current.linvel();
