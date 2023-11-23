@@ -73,7 +73,7 @@ const Landing = () => {
             <Image alt={"doggo-footage"} fill src={"/img/footage_1.png"} />
           </div>
           <div className="relative sm:w-[358px] sm:h-[232px] md:w-[494px] md:h-[320px] bg-white border-8 border-[#FFFFFF] shadow-sm sm:rounded-lg md:rounded-2xl">
-            <Image alt={"doggo-footage"} fill src={"/img/footage_1.png"} />
+            <Image alt={"doggo-footage"} fill src={"/img/footage_2.png"} />
           </div>
         </div>
       </div>

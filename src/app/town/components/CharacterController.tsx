@@ -9,6 +9,7 @@ import { useRef } from "react";
 import { Dog } from "@/app/make/characters/Dog";
 import CharacterCamera from "./CharacterCamera";
 import * as THREE from "three";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export const Controls = {
   forward: "forward",
@@ -33,11 +34,10 @@ const CharacterController = () => {
   const forwardPressed = useKeyboardControls(
     (state) => state[Controls.forward]
   );
+  const mobile = useIsMobile();
 
   useFrame((state) => {
     const impulse = { x: 0, y: 0, z: 0 };
-    const frontV = new THREE.Vector3();
-    const sideV = new THREE.Vector3();
     const direction = new THREE.Vector3();
     const position = new THREE.Vector3();
 
@@ -80,11 +80,12 @@ const CharacterController = () => {
           new THREE.Vector3()
         );
         const targetPos = new THREE.Vector3(
-          worldPos.x,
+          -worldPos.x,
           worldPos.y + 1,
-          worldPos.z
+          -worldPos.z
         );
         state.camera.position.lerp(targetPos, 0.1);
+        state.camera.lookAt(worldPos.x + 4, worldPos.y + 1, worldPos.z + 4);
 
         // camera follow direction
 
@@ -100,7 +101,7 @@ const CharacterController = () => {
       }
     }
   });
-
+  console.log(mobile);
   return (
     <RigidBody
       ref={rigidbody}
@@ -111,6 +112,7 @@ const CharacterController = () => {
       onCollisionEnter={() => {
         isOnFloor.current = true;
       }}>
+      {mobile && <OrbitControls />}
       <CapsuleCollider args={[0.8, 0]}>
         <group ref={character}>
           <CharacterCamera />
