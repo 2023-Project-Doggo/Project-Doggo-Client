@@ -8,8 +8,11 @@ import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Controls } from "@/app/town/components/CharacterController";
 import Field from "@/app/town/components/Field";
+import { useCharacterContext } from "@/contexts/CharacterCustomizationContext";
 
 const Town = () => {
+  const { userName } = useCharacterContext() as any;
+  console.log(userName);
   const map = useMemo<KeyboardControlsEntry<string>[]>(
     () => [
       { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
