@@ -9,7 +9,7 @@ const Field = () => {
     <Suspense>
       <Physics debug gravity={[0, -20, 0]}>
         <CharacterController />
-        <RigidBody colliders={"trimesh"} position={[0, 0, 0]} type="fixed">
+        <RigidBody colliders={"hull"} position={[0, 0, 0]} type="fixed">
           <Farm />
         </RigidBody>
       </Physics>
