@@ -1,19 +1,19 @@
 "use client";
-import { Sky } from "@react-three/drei";
 import { Farm } from "../assets/Farm";
+import { Suspense } from "react";
+import { Physics, RigidBody } from "@react-three/rapier";
 import CharacterController from "./CharacterController";
 
 const Field = () => {
   return (
-    <>
-      <Sky sunPosition={[100, 100, 20]} />
-      <ambientLight intensity={2} />
-      <directionalLight position={[-5, 5, 5]} castShadow />
-      <group>
-        <Farm />
+    <Suspense>
+      <Physics debug gravity={[0, -20, 0]}>
         <CharacterController />
-      </group>
-    </>
+        <RigidBody colliders={"trimesh"} position={[0, 0, 0]} type="fixed">
+          <Farm />
+        </RigidBody>
+      </Physics>
+    </Suspense>
   );
 };
 

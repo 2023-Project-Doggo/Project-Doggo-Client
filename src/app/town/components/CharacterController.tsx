@@ -18,9 +18,9 @@ export const Controls = {
   jump: "jump",
 };
 
-const JUMP_FORCE = 2;
-const MOVEMENT_SPEED = 5;
-const MAX_VEL = 3;
+const JUMP_FORCE = 0.1;
+const MOVEMENT_SPEED = 0.04;
+const MAX_VEL = 1.4;
 
 const CharacterController = () => {
   const rigidbody = useRef<RapierRigidBody>(null);
@@ -69,11 +69,10 @@ const CharacterController = () => {
         const angle = Math.atan2(impulse.x, impulse.z);
         character.current.rotation.y = angle;
       }
-
-      rigidbody.current.setLinvel(impulse, true);
+      rigidbody.current.applyImpulse(impulse, true);
     }
 
-    const cameraDistanceY = window.innerWidth < 1024 ? 1 : 3;
+    const cameraDistanceY = window.innerWidth < 1024 ? 1 : 2.2;
     const cameraDistanceZ = window.innerWidth < 1024 ? 3 : 2;
     const playerWorldPos = vec3(rigidbody.current.translation());
     controls.current.setLookAt(
@@ -88,15 +87,7 @@ const CharacterController = () => {
   });
 
   return (
-    <RigidBody
-      ref={rigidbody}
-      colliders={false}
-      scale={[0.6, 0.6, 0.6]}
-      position={[0, 0, 1]}
-      enabledRotations={[false, false, false]}
-      onCollisionEnter={() => {
-        isOnFloor.current = true;
-      }}>
+    <group>
       <CameraControls
         makeDefault
         ref={controls}
@@ -104,12 +95,22 @@ const CharacterController = () => {
         minDistance={0}
         maxDistance={100}
       />
-      <CapsuleCollider args={[0.8, 0]}>
-        <group ref={character}>
-          <Dog />
-        </group>
-      </CapsuleCollider>
-    </RigidBody>
+      <RigidBody
+        ref={rigidbody}
+        colliders={false}
+        scale={[0.6, 0.6, 0.6]}
+        position={[6, 2, 0]}
+        enabledRotations={[false, false, false]}
+        onCollisionEnter={() => {
+          isOnFloor.current = true;
+        }}>
+        <CapsuleCollider args={[0.2, 0.2]}>
+          <group ref={character}>
+            <Dog />
+          </group>
+        </CapsuleCollider>
+      </RigidBody>
+    </group>
   );
 };
 
