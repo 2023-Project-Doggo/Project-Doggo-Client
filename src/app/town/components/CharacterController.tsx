@@ -122,7 +122,7 @@ const CharacterController = () => {
               bottom: "-5rem",
               fontSize: "1rem",
               padding: "0.5rem",
-              width: "min-content",
+              width: "80px",
               background: "rgba(0, 0, 0, 0.4)",
               color: "#ffffff9e",
               textAlign: "center",
