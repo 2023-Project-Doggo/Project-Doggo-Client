@@ -4,11 +4,12 @@ import {
   RapierRigidBody,
   vec3,
 } from "@react-three/rapier";
-import { CameraControls, useKeyboardControls } from "@react-three/drei";
+import { CameraControls, Html, useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Dog } from "@/app/make/characters/Dog";
 import * as THREE from "three";
+import { useCharacterContext } from "@/contexts/CharacterCustomizationContext";
 
 export const Controls = {
   forward: "forward",
@@ -23,6 +24,7 @@ const MOVEMENT_SPEED = 0.04;
 const MAX_VEL = 1.4;
 
 const CharacterController = () => {
+  const { userName } = useCharacterContext() as any;
   const rigidbody = useRef<RapierRigidBody>(null);
   const isOnFloor = useRef(true);
   const character = useRef<THREE.Group>(null);
@@ -111,6 +113,25 @@ const CharacterController = () => {
         onCollisionEnter={() => {
           isOnFloor.current = true;
         }}>
+        <Html scale={0.5} transform center distanceFactor={10}>
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              bottom: "-5rem",
+              fontSize: "1rem",
+              padding: "0.5rem",
+              width: "min-content",
+              background: "rgba(0, 0, 0, 0.4)",
+              color: "#ffffff9e",
+              textAlign: "center",
+              borderRadius: "0.5em",
+              display: "block",
+            }}>
+            {userName}
+          </div>
+        </Html>
         <CapsuleCollider args={[0.2, 0.2]}>
           <group ref={character}>
             <Dog />
