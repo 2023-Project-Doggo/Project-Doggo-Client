@@ -62,7 +62,7 @@ const Field = () => {
             setCake(true);
           }}
           onCollisionExit={setCake(false)}
-          colliders={"cuboid"}
+          colliders={"hull"}
           position={[12.5, 0.3, 10.5]}
           type="fixed">
           {cake && (
