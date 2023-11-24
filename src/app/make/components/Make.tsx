@@ -1,6 +1,7 @@
 "use client";
 import { CameraControls } from "./CameraControls";
 import { Dog } from "@/app/make/characters/Dog";
+import { Ground } from "./Ground";
 
 const Make = () => {
   return (
@@ -15,6 +16,9 @@ const Make = () => {
       />
       <group position={[0, -0.2, 0]}>
         <Dog />
+      </group>
+      <group position={[0.4, -0.4, -2]} rotation={[0, 1.3, 0]}>
+        <Ground />
       </group>
     </>
   );
